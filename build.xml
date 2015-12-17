@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Dec 17, 2015 11:17:00 PM                                                        
+
+     Wormhole
+     A Javascript Game Framework!!
+                   
+     LinkWu                                                                
+     ====================================================================== -->
+<project name="project" default="default" basedir=".">
+    <description>
+    	Wormhole, a Javascript Game Framework!!
+    </description>
+	
+	<property name="config.dir.bin" value="${basedir}/bin"/>
+	<property name="config.dir.src" value="${basedir}/src"/>
+	<property name="config.dir.ext" value="${basedir}/ext"/>
+	
+    <!-- ================================= 
+          target: default              
+         ================================= -->
+    <target name="default" depends="depends" description="description">
+    	<copy todir="${config.dir.bin}">
+    		<fileset dir="${config.dir.ext}/html" includes="**/*" />
+    	</copy>
+    	<copy todir="${config.dir.bin}/src">
+    		<fileset dir="${config.dir.src}" includes="**/*" />
+    	</copy>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="depends">
+    </target>
+
+</project>

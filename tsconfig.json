@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "target": "ES3",
+        "noImplicitAny": false,
+        "rootDir": "src",
+        "outDir": "bin",
+        "out": "bin/wormhole.js",
+        "sourceMap": true,
+        "sourceRoot": "src"
+    },
+    "exclude": [
+        "node_modules",
+        "bin",
+        "ext"
+    ]
+}
