@@ -1,12 +1,12 @@
-/// <reference path="Component.ts" />
-
-module component {
-	/**
-	 * TransformComponent
-	 */
-	export class TransformComponent {
-		constructor() {
-			
+module wormhole {
+	export module component {
+		/**
+		 * TransformComponent
+		 */
+		export class TransformComponent extends Component{
+			constructor() {
+				super();
+			}
 		}
 	}
 }

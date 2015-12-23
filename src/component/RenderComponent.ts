@@ -1,12 +1,12 @@
-/// <reference path="Component.ts" />
-
-module component {
-	/**
-	 * RenderComponent
-	 */
-	export class RenderComponent {
-		constructor() {
-			
+module wormhole{
+	export module component {
+		/**
+		 * RenderComponent
+		 */
+		export class RenderComponent extends Component {
+			constructor() {
+				super();
+			}
 		}
 	}
 }
