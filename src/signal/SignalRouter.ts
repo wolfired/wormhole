@@ -1,71 +1,45 @@
-/// <reference path="Signal.ts" />
-/// <reference path="SignalScope.ts" />
+/// <reference path="ISignalRouter.ts" />
 
 module wormhole {
 	export module signal {
-		/**
-		 * SignalRouter
-		 */
+		type SignalHandlers = SignalHandler[];
+		type SignalHandlersMap = SignalHandlers[];
+
 		export class SignalRouter {
-			
-			private static handler_map_global:(((signal:Signal) => void)[])[] = [];
-			
-			private handler_map_local:(((signal:Signal) => void)[])[] = [];
-			
-			private scope:SignalScope;
-			
-			constructor(scope?:SignalScope) {
-				this.scope = undefined === scope ? SignalScope.GLOBAL : scope;
+			constructor() {
 			}
 			
-			addHandler(sid:number, handler:(signal:Signal) => void, scope?:SignalScope):void{
-				scope = undefined === scope ? this.scope : scope;
-				
-				var handler_map:((signal:Signal) => void)[] = this.handler_map(sid, scope);
-				
-				handler_map.push(handler);
+			addHandler(sid:SignalID, handler:SignalHandler):void{
+				this.handlers(sid).push(handler);
 			}
 			
-			delHandler(sid:number, handler:(signal:Signal) => void, scope?:SignalScope):void{
-				scope = undefined === scope ? this.scope : scope;
+			delHandler(sid:SignalID, handler:SignalHandler):void{
+				var handlers:SignalHandlers = this.handlers(sid);
 
-				var handler_map:((signal:Signal) => void)[] = this.handler_map(sid, scope);
-
-				for(var idx:number = 0; idx < handler_map.length; idx += 1){
-					if(handler_map[idx] === handler){
-						handler_map.splice(idx);
+				for(let i:number = 0; i < handlers.length; ++i){
+					if(handlers[i] === handler){
+						handlers.splice(i, 1);
 						break;
 					}
 				}
 			}
 
-			route(signal:Signal, scope?:SignalScope):void{
-				var sid:number = signal.sid;
-				scope = undefined === scope ? this.scope : scope;
+			route(s:Signal):void{
+				var handlers:SignalHandlers = this.handlers(s.sid);
 				
-				var handler_map:((signal:Signal) => void)[] = this.handler_map(sid, scope);
-				
-				for(var idx:number = 0; idx < handler_map.length; idx += 1){
-					handler_map[idx](signal);
+				for(let i:number = 0; i < handlers.length; ++i){
+					handlers[i](s);
 				}
 			}
 			
-			private handler_map(sid:number, scope:SignalScope):((signal:Signal) => void)[]{
-				if(SignalScope.LOCAL === scope){
-					if(undefined === this.handler_map_local[sid]){
-						this.handler_map_local[sid] = [];
-					}
-					
-					return this.handler_map_local[sid];
-				}else if(SignalScope.GLOBAL === scope){
-					if(undefined === SignalRouter.handler_map_global[sid]){
-						SignalRouter.handler_map_global[sid] = [];
-					}
-
-					return SignalRouter.handler_map_global[sid];
+			protected _handlers_map:SignalHandlersMap = [];
+			
+			private handlers(sid:SignalID):SignalHandlers{
+				if(undefined === this._handlers_map[sid]){
+					this._handlers_map[sid] = [];
 				}
 				
-				return undefined;
+				return this._handlers_map[sid];
 			}
 		}
 	}

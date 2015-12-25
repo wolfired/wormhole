@@ -1,8 +1,10 @@
-/// <reference path="component/Component.ts" />
+/// <reference path="signal/SignalRouter.ts" />
 
-module wormhole {
+import sig = wormhole.signal;
 
-}
 
-var c:component.Component = new component.Component();
-console.log(c);
+
+
+var sr = new sig.SignalRouter();
+sr.addHandler(1000, (s:sig.Signal):void => { console.log(this) });
+sr.route(new sig.Signal(1000));
