@@ -6,14 +6,14 @@ module wormhole {
 		type SignalHandlersMap = SignalHandlers[];
 
 		export class SignalRouter {
-			constructor() {
+			public constructor() {
 			}
 			
-			addHandler(sid:SignalID, handler:SignalHandler):void{
+			public addHandler(sid:SignalID, handler:SignalHandler):void{
 				this.handlers(sid).push(handler);
 			}
 			
-			delHandler(sid:SignalID, handler:SignalHandler):void{
+			public delHandler(sid:SignalID, handler:SignalHandler):void{
 				var handlers:SignalHandlers = this.handlers(sid);
 
 				for(let i:number = 0; i < handlers.length; ++i){
@@ -24,15 +24,13 @@ module wormhole {
 				}
 			}
 
-			route(s:Signal):void{
+			public route(s:Signal):void{
 				var handlers:SignalHandlers = this.handlers(s.sid);
 				
 				for(let i:number = 0; i < handlers.length; ++i){
 					handlers[i](s);
 				}
 			}
-			
-			protected _handlers_map:SignalHandlersMap = [];
 			
 			private handlers(sid:SignalID):SignalHandlers{
 				if(undefined === this._handlers_map[sid]){
@@ -41,6 +39,8 @@ module wormhole {
 				
 				return this._handlers_map[sid];
 			}
+			
+			protected _handlers_map:SignalHandlersMap = [];
 		}
 	}
 }

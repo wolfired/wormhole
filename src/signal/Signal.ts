@@ -3,11 +3,11 @@ module wormhole {
 		export type SignalID = number;
 		
 		export class Signal {
-			sid:SignalID;
-			
-			constructor(sid:SignalID) {
+			public constructor(sid:SignalID) {
 				this.sid = sid;
 			}
+			
+			public sid:SignalID;
 		}
 	}
 }
