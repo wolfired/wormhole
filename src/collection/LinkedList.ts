@@ -28,14 +28,8 @@ module wormhole {
 				this._length = 0;
 			}
 			
-			public foreach(eh:ElementHandler<T>):void{
-				this.forwardNode((n:Node<T>):boolean=>{
-					return eh(n.ele);				
-				});
-			}
-			
 			public insert(e:T, idx?:number):void{
-				if(undefined === idx || this._length < idx){
+				if(undefined === idx || this._length < idx || 0 > idx){
 					idx = this._length;
 				}
 				
@@ -50,6 +44,8 @@ module wormhole {
 							
 							n.pre.nxt = nn;
 							n.pre = nn;
+							
+							++this._length;
 							
 							return true;
 						}
@@ -67,6 +63,10 @@ module wormhole {
 							
 							n.nxt.pre = nn;
 							n.nxt = nn;
+							
+							++this._length;
+							
+							return true;
 						}
 						
 						--idx;
@@ -74,8 +74,6 @@ module wormhole {
 						return false;
 					});
 				}
-				
-				++this._length;
 			}
 			
 			public remove(e:T, once?:boolean):void{
@@ -88,6 +86,12 @@ module wormhole {
 						n.pre.nxt = n.nxt;
 						n.nxt.pre = n.pre;
 						
+						n.pre = undefined;
+						n.ele = undefined;
+						n.nxt = undefined;
+						
+						--this._length;
+						
 						return once;
 					}
 					
@@ -95,33 +99,125 @@ module wormhole {
 				});
 			}
 			
+			public length():number{
+				return this._length;
+			}
+			
+			public indexOf(e:T):number{
+				var idx:number = -1;
+				
+				this.foreach((ele:T):boolean=>{
+					++idx;
+					
+					if(e === ele){
+						return true;
+					}
+					
+					return false;
+				});
+				
+				return idx;
+			}
+			
+			public elementAt(idx:number):T{
+				if(undefined === idx || this._length <= idx || 0 > idx){
+					idx = this._length - 1;
+				}
+				
+				var e:T = undefined;
+				
+				if(idx < this._length / 2.0){
+					this.foreach((ele:T):boolean=>{
+						if(0 === idx){
+							e = ele;
+							
+							return true;
+						}
+						
+						--idx;
+						
+						return false;
+					});
+				}else{
+					idx = this._length - idx - 1;
+					
+					this.reverse((ele:T):boolean=>{
+						if(0 === idx){
+							e = ele;
+							
+							return true;
+						}
+						
+						--idx;
+						
+						return false;
+					});
+				}
+				
+				return e;
+			}
+			
+			public isContain(e:T):boolean{
+				return -1 < this.indexOf(e);
+			}
+			
+			public foreach(eh:ElementHandler<T>):void{
+				this.forwardNode((n:Node<T>):boolean=>{
+					return eh(n.ele);				
+				});
+			}
+			
+			private reverse(eh:ElementHandler<T>):void{
+				this.reverseNode((n:Node<T>):boolean=>{
+					return eh(n.ele);
+				});
+			}
+			
 			private forwardNode(nh:NodeHandler<T>):void{
 				var n:Node<T> = this._head.nxt;
+				var temporary:Node<T>;
 				while(n !== this._tail){
+					temporary = n.nxt;
 					if(nh(n)){
 						break;
 					}
-					n = n.nxt;
+					n = temporary;
+				}
+			}
+			
+			private reverseNode(nh:NodeHandler<T>):void{
+				var n:Node<T> = this._tail.pre;
+				var temporary:Node<T>;
+				while(n !== this._head){
+					temporary = n.pre;
+					if(nh(n)){
+						break;
+					}
+					n = temporary;
 				}
 			}
 			
 			private forwardNode2Tail(nh:NodeHandler<T>):void{
 				var n:Node<T> = this._head.nxt;
+				var temporary:Node<T>;
 				while(n !== this._head){
+					temporary = n.nxt;
 					if(nh(n)){
 						break;
 					}
-					n = n.nxt;
+					n = temporary;
 				}
 			}
-			
+					
 			private reverseNode2Head(nh:NodeHandler<T>):void{
 				var n:Node<T> = this._tail.pre;
+				var temporary:Node<T>;
 				while(n !== this._tail){
+					temporary = n.pre;
 					if(nh(n)){
 						break;
 					}
-					n = n.pre;
+					n = temporary;
 				}
 			}
 			
