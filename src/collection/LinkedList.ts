@@ -36,7 +36,7 @@ module wormhole {
 				var nn:Node<T> = new Node<T>();
 				nn.ele = e;
 				
-				if(idx < this._length / 2.0){
+				if(idx < this._length / 2){
 					this.forwardNode2Tail((n:Node<T>):boolean=>{
 						if(0 === idx){
 							nn.nxt = n;
@@ -126,7 +126,7 @@ module wormhole {
 				
 				var e:T = undefined;
 				
-				if(idx < this._length / 2.0){
+				if(idx < this._length / 2){
 					this.foreach((ele:T):boolean=>{
 						if(0 === idx){
 							e = ele;
