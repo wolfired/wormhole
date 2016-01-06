@@ -221,9 +221,7 @@ module wormhole {
 			private _tail:Tail<T>;
 			
 			private _length:number;
-			public get length():number{
-				return this._length;
-			}
+			public get length():number{ return this._length; }
 		}
 	}
 }

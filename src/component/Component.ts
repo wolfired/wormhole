@@ -25,9 +25,7 @@ module wormhole {
 			private static componentConstructors:ComponentConstructor[] = [];
 
 			private _host:Entity;
-			public get host():Entity {
-				return this._host;
-			}
+			public get host():Entity { return this._host; }
 		}
 		
 		export type ComponentConstructor = new()=>Component;
