@@ -11,7 +11,7 @@ module wormhole {
 				var c:T = <T> this._component_map[cid];
 				
 				if(undefined === c){
-					c = Generator<T>(cid);
+					c = Component.Creator<T>(cid, this);
 					
 					this._component_map[cid] = c;
 				}
@@ -23,6 +23,8 @@ module wormhole {
 				var c:T = <T> this._component_map[cid];
 				
 				if(undefined !== c){
+					Component.Deleter(c);
+					
 					delete this._component_map[cid];
 				}
 
