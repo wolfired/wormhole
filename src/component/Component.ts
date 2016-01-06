@@ -5,10 +5,12 @@ module wormhole {
 		export type ComponentID = number;
 		
 		export class Component {
-			public host:Entity;
 			
 			public constructor() {
-				
+			}
+			private _host:Entity;
+			public get host():Entity {
+				return this._host;
 			}
 		}
 		

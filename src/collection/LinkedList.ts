@@ -99,10 +99,6 @@ module wormhole {
 				});
 			}
 			
-			public length():number{
-				return this._length;
-			}
-			
 			public indexOf(e:T):number{
 				var idx:number = -1;
 				
@@ -225,6 +221,9 @@ module wormhole {
 			private _tail:Tail<T>;
 			
 			private _length:number;
+			public get length():number{
+				return this._length;
+			}
 		}
 	}
 }

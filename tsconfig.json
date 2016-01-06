@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "amd",
-        "target": "ES3",
+        "target": "ES5",
         "noImplicitAny": false,
         "rootDir": "src",
         "outDir": "bin",

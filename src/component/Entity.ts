@@ -12,7 +12,6 @@ module wormhole {
 				
 				if(undefined === c){
 					c = Generator<T>(cid);
-					c.host = this;
 					
 					this._component_map[cid] = c;
 				}
@@ -24,7 +23,6 @@ module wormhole {
 				var c:T = <T> this._component_map[cid];
 				
 				if(undefined !== c){
-					c.host = undefined;
 					delete this._component_map[cid];
 				}
 

@@ -4,10 +4,13 @@ module wormhole {
 		
 		export class Signal {
 			public constructor(sid:SignalID) {
-				this.sid = sid;
+				this._sid = sid;
 			}
 			
-			public sid:SignalID;
+			private _sid:SignalID;
+			public get sid():SignalID {
+				return this._sid;
+			}
 		}
 	}
 }
