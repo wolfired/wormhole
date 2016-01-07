@@ -8,9 +8,7 @@ module wormhole {
 			}
 			
 			private _sid:SignalID;
-			public get sid():SignalID {
-				return this._sid;
-			}
+			public get sid():SignalID { return this._sid; }
 		}
 	}
 }

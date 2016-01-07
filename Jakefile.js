@@ -22,6 +22,8 @@ task("copy", [], {}, function(){
 	fl.toArray().forEach(function(f) {
 		jake.cpR(f, CONFIG_DIR_BIN);
 	});
+	
+	jake.cpR(CONFIG_DIR_SRC, CONFIG_DIR_BIN);
 });
 
 desc("Compile Task");
