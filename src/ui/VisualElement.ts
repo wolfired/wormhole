@@ -3,9 +3,9 @@
 
 import comp = wormhole.component;
 
-module wormhole {
-	export module ui {
 		export class VisualElement extends comp.Entity {
+namespace wormhole {
+	export namespace ui {
 			public constructor(){
 				super();
 				

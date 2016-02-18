@@ -1,7 +1,7 @@
 /// <reference path="IList.ts" />
 
-module wormhole {
-	export module collection {
+namespace wormhole {
+	export namespace collection {
 		
 		class Node<T> {
 			public pre:Node<T>;

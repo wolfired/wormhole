@@ -1,7 +1,7 @@
 /// <reference path="Component.ts" />
 
-module wormhole {
-	export module component {
+namespace wormhole {
+	export namespace component {
 		export class Entity {
 			public constructor() {
 				this._component_map = [];

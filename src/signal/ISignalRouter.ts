@@ -1,7 +1,7 @@
 /// <reference path="Signal.ts" />
 
-module wormhole {
-	export module signal {
+namespace wormhole {
+	export namespace signal {
 		export type SignalHandler = (s:Signal)=>void;
 		
 		export interface ISignalRouter {

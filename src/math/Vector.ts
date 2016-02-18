@@ -1,5 +1,5 @@
-module wormhole {
-	export module math {
+namespace wormhole {
+	export namespace math {
 		export class Vector {
 			public static Addition(lh:Vector, rh:Vector, r?:Vector):Vector{
 				if(undefined === r){

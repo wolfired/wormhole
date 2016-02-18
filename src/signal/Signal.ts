@@ -1,5 +1,5 @@
-module wormhole {
-	export module signal {
+namespace wormhole {
+	export namespace signal {
 		export type SignalID = number;
 		
 		export class Signal {

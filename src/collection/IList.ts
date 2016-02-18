@@ -1,5 +1,5 @@
-module wormhole {
-	export module collection {
+namespace wormhole {
+	export namespace collection {
 		
 		export type ElementHandler<T> = (e:T)=>boolean;
 		

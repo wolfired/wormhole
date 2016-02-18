@@ -1,7 +1,7 @@
 /// <reference path="Entity.ts" />
 
-module wormhole {
-	export module component {
+namespace wormhole {
+	export namespace component {
 		export type ComponentID = number;
 		
 		export class Component {
