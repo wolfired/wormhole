@@ -1,5 +1,10 @@
 class Wormhole {
-	public setup(w:number, h:number):Wormhole{
+	public setup(w?:number, h?:number):Wormhole{
+		document.body.style.margin = "0px";
+		
+		w = undefined == w ? window.innerWidth : w;
+		h = undefined == h ? window.innerHeight : h;
+
 		this._canvas = <HTMLCanvasElement> document.createElement("canvas");
 		this._canvas.width = w;
 		this._canvas.height = h;
@@ -32,7 +37,3 @@ class Wormhole {
 	private _canvas:HTMLCanvasElement;
 	private _context:WebGLRenderingContext;
 }
-
-
-var wh:Wormhole = new Wormhole();
-wh.setup(500, 500).start();

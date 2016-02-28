@@ -1,0 +1,14 @@
+{
+  "name": "wormhole",
+  "xwalk_package_id": "com.wolfired.wormhole",
+  "xwalk_version": "0.0.1",
+  "start_url": "index.html",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/vnd.microsoft.icon",
+      "density": "4.0"
+    }
+  ]
+}

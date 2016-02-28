@@ -47,3 +47,14 @@ task("watch", [], {async: true}, function(){
 		complete();
 	});
 });
+
+desc("Crosswalk");
+task("crosswalk", [], {}, function(){
+	var cmds = [
+		"xwalk.exe --enable-inspector ./bin/manifest.json"
+	];
+	
+	jake.exec(cmds, {interactive: true}, function(){
+		complete();
+	});
+});
