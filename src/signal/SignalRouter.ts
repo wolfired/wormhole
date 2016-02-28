@@ -5,7 +5,7 @@ namespace wormhole {
 		type SignalHandlers = SignalHandler[];
 		type SignalHandlersMap = SignalHandlers[];
 
-		export class SignalRouter {
+		export class SignalRouter implements ISignalRouter{
 			public constructor() {
 			}
 			
