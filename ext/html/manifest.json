@@ -6,7 +6,7 @@
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64",
+      "sizes": "48x48",
       "type": "image/vnd.microsoft.icon",
       "density": "4.0"
     }
