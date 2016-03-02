@@ -1,0 +1,24 @@
+{
+  "name": "wormhole",
+  "version": "0.0.1",
+  "description": "A Javascript Game Framework!!",
+  "main": "./lib/wormhole.js",
+  "typings":"./lib/wormhole.d.js",
+  "bin": {
+  },
+  "directories": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/outel/wormhole.git"
+  },
+  "author": "LinkWu <wjianl@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/outel/wormhole/issues"
+  },
+  "homepage": "https://gitlab.com/outel/wormhole#README"
+}

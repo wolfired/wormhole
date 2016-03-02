@@ -1,5 +1,5 @@
-var CONFIG_DIR_BIN="./bin";
 var CONFIG_DIR_EXT="./ext";
+var CONFIG_DIR_LIB="./lib";
 var CONFIG_DIR_SRC="./src";
 
 desc("Default Task");
@@ -13,17 +13,10 @@ task("default", [], {async: true}, function(){
 	});
 });
 
-desc("Copy Task");
-task("copy", [], {}, function(){
-	jake.mkdirP(CONFIG_DIR_BIN);
-	
-	var fl = new jake.FileList();
-	fl.include(CONFIG_DIR_EXT + "/html/*");
-	fl.toArray().forEach(function(f) {
-		jake.cpR(f, CONFIG_DIR_BIN);
-	});
-	
-	jake.cpR(CONFIG_DIR_SRC, CONFIG_DIR_BIN);
+desc("Build Task");
+task("build", ["compile"], {}, function(){
+	jake.mkdirP(CONFIG_DIR_LIB);
+	jake.cpR(CONFIG_DIR_SRC, CONFIG_DIR_LIB);
 });
 
 desc("Compile Task");

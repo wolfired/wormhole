@@ -1,0 +1,6 @@
+/.vscode/
+/emscripten/
+/ext/
+/src/
+/Jakefile.js
+/tsconfig.json
