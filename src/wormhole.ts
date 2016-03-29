@@ -1,5 +1,10 @@
-class Wormhole {
+export class Wormhole {
 	public setup(w?:number, h?:number):Wormhole{
+		window.onresize = (event:Event):void => {
+			this._canvas.width = window.innerWidth;
+			this._canvas.height = window.innerHeight;
+		};
+		
 		document.body.style.margin = "0px";
 		
 		w = undefined == w ? window.innerWidth : w;

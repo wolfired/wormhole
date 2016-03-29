@@ -1,13 +1,9 @@
-/// <reference path="Component.ts" />
+import { ComponentID, Component } from './Component';
 
-namespace wormhole {
-	export namespace component {
-		export class Component4Transform extends Component{
-			public static ID:ComponentID = Component.Register(Component4Transform);
-			
-			public constructor() {
-				super();
-			}
-		}
+export class Component4Transform extends Component{
+	public static ID:ComponentID = Component.Register(Component4Transform);
+	
+	public constructor() {
+		super();
 	}
 }

@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
+		"target": "es5",
         "module": "amd",
-        "target": "ES5",
         "noImplicitAny": false,
         "rootDir": "./src",
         "outDir": "./lib",
-        "out": "./lib/wormhole.js",
+		"outFile": "./lib/wormhole.js",
+		"declaration": true,
         "sourceMap": true,
         "sourceRoot": "src"
     },

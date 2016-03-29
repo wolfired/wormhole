@@ -1,9 +1,7 @@
-namespace wormhole {
-	export namespace ui {
-		export class VisualElementContainer extends VisualElement {
-			public constructor(){
-				super();
-			}
-		}
+import { VisualElement } from './VisualElement';
+
+export class VisualElementContainer extends VisualElement {
+	public constructor(){
+		super();
 	}
 }

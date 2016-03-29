@@ -1,13 +1,11 @@
 {
-  "name": "wormhole",
-  "version": "0.0.1",
+  "name": "wormhole-framework",
+  "version": "0.0.4",
   "description": "A Javascript Game Framework!!",
   "main": "./lib/wormhole.js",
-  "typings":"./lib/wormhole.d.js",
-  "bin": {
-  },
-  "directories": {
-  },
+  "typings": "./lib/wormhole.d.js",
+  "bin": {},
+  "directories": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },
