@@ -1,11 +1,10 @@
 {
   "name": "wormhole-framework",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Javascript Game Framework!!",
   "bin": {},
   "directories": {},
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/outel/wormhole.git"
