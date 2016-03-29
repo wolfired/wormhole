@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
 		"target": "es5",
-        "module": "amd",
-        "noImplicitAny": false,
-        "rootDir": "./src",
-        "outDir": "./lib",
-		"outFile": "./lib/wormhole.js",
+        "module": "commonjs",
 		"declaration": true,
-        "sourceMap": true,
-        "sourceRoot": "src"
+        "noImplicitAny": false,
+		"removeComments": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+        "rootDir": "./src",
+        "outDir": "./lib"
     },
     "exclude": [
         "node_modules",
