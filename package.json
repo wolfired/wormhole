@@ -1,6 +1,6 @@
 {
   "name": "wormhole-framework",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Javascript Game Framework!!",
   "main": "./lib/wormhole.js",
   "typings": "./lib/wormhole.d.js",
