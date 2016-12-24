@@ -1,9 +1,9 @@
-import { ComponentID, Component } from './Component';
+import { Component, Reg } from './Component';
+import { IEntity } from './IEntity';
 
+@Reg
 export class Component4Render extends Component {
-	public static ID:ComponentID = Component.Register(Component4Render);
-	
-	public constructor() {
-		super();
+	public constructor(host:IEntity) {
+		super(host);
 	}
 }

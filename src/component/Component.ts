@@ -1,30 +1,23 @@
-import { Entity } from './Entity';
+import { IEntity } from './IEntity';
 
-export type ComponentID = number;
-export type ComponentConstructor = new()=>Component;
+export type ComponentConstructor<T> = new (host: IEntity) => T;
+
+export const COMPONENT_IDX: string = "COMPONENT_IDX";
 
 export class Component {
-	public static Register(cc:ComponentConstructor):ComponentID{
-		return <ComponentID> (Component.componentConstructors.push(cc) - 1);
+	protected constructor(host: IEntity) {
+		this.Host = host;
 	}
-	
-	public static Creator<T extends Component>(cid:ComponentID, h:Entity):T{
-		var c:T = <T> new Component.componentConstructors[cid]();
-		c._host = h;
-		return c;
-	}
-	
-	public static Deleter(c:Component):void{
-		c._host = undefined;
-	}
-	
-	public constructor() {
-	}
-	
-	private static componentConstructors:ComponentConstructor[] = [];
 
-	private _host:Entity;
-	public get host():Entity { return this._host; }
+	public readonly Host: IEntity;
 }
 
+let IDX: uint = 0;
 
+export function Reg<T extends Component>(cc: ComponentConstructor<T>) {
+	cc[COMPONENT_IDX] = IDX++;
+}
+
+export function Len(): uint {
+	return IDX;
+}

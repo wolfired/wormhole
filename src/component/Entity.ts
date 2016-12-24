@@ -1,41 +1,34 @@
-import { ComponentID, Component } from './Component';
+import { Component, ComponentConstructor, COMPONENT_IDX } from './Component';
+import { IEntity } from './IEntity';
 
-export class Entity {
-	public constructor() {
-		this._component_map = [];
-	}
-	
-	public addComponent<T extends Component>(cid:ComponentID):T{
-		var c:T = <T> this._component_map[cid];
-		
-		if(undefined === c){
-			c = Component.Creator<T>(cid, this);
-			
-			this._component_map[cid] = c;
-		}
+/**
+ * 实体类
+ */
+export class Entity implements IEntity {
+    public constructor() {
+    }
 
-		return c;
-	}
-	
-	public delComponent<T extends Component>(cid:ComponentID):T{
-		var c:T = <T> this._component_map[cid];
-		
-		if(undefined !== c){
-			Component.Deleter(c);
-			
-			delete this._component_map[cid];
-		}
+    public TryGet<T extends Component>(cc: ComponentConstructor<T>): T {
+        let idx: uint = <uint>cc[COMPONENT_IDX];
+        if (void 0 === idx) {
+            return void 0;
+        }
 
-		return c;
-	}
-	
-	public getComponent<T extends Component>(cid:ComponentID):T{
-		return <T> this._component_map[cid];
-	}
-	
-	public isContain(cid:ComponentID):boolean{
-		return undefined !== this._component_map[cid];
-	}
-	
-	protected _component_map:Component[];
+        return <T>this._component_map[idx];
+    }
+
+    public Get<T extends Component>(cc: ComponentConstructor<T>): T {
+        let idx: uint = <uint>cc[COMPONENT_IDX];
+        if (void 0 === idx) {
+            throw "Error idx";
+        }
+
+        let com = this._component_map[idx];
+        if (void 0 === com) {
+            this._component_map[cc[COMPONENT_IDX]] = com = new cc(this);
+        }
+        return <T>com;
+    }
+
+    private _component_map: Component[] = [];
 }

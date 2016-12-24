@@ -8,11 +8,11 @@ export class SignalRouter implements ISignalRouter{
 	public constructor() {
 	}
 	
-	public addHandler(sid:SignalID, handler:SignalHandler):void{
+	public AddHandler(sid:SignalID, handler:SignalHandler):void{
 		this.handlers(sid).push(handler);
 	}
 	
-	public delHandler(sid:SignalID, handler:SignalHandler):void{
+	public DelHandler(sid:SignalID, handler:SignalHandler):void{
 		var handlers:SignalHandlers = this.handlers(sid);
 
 		for(let i:number = 0; i < handlers.length; ++i){
@@ -23,8 +23,8 @@ export class SignalRouter implements ISignalRouter{
 		}
 	}
 
-	public route(s:Signal):void{
-		var handlers:SignalHandlers = this.handlers(s.sid);
+	public Route(s:Signal):void{
+		var handlers:SignalHandlers = this.handlers(s.Sid);
 		
 		for(let i:number = 0; i < handlers.length; ++i){
 			handlers[i](s);
@@ -32,7 +32,7 @@ export class SignalRouter implements ISignalRouter{
 	}
 	
 	private handlers(sid:SignalID):SignalHandlers{
-		if(undefined === this._handlers_map[sid]){
+		if(void 0 === this._handlers_map[sid]){
 			this._handlers_map[sid] = [];
 		}
 		

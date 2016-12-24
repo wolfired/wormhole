@@ -1,10 +1,9 @@
-export type SignalID = number;
+export type SignalID = uint32;
 
 export class Signal {
-	public constructor(sid:SignalID) {
-		this._sid = sid;
+	public constructor(sid: SignalID) {
+		this.Sid = sid;
 	}
-	
-	private _sid:SignalID;
-	public get sid():SignalID { return this._sid; }
+
+	public readonly Sid: SignalID;
 }

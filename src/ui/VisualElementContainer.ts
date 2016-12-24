@@ -1,7 +1,7 @@
 import { VisualElement } from './VisualElement';
 
 export class VisualElementContainer extends VisualElement {
-	public constructor(){
+	public constructor() {
 		super();
 	}
 }
