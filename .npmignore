@@ -1,6 +1,7 @@
 /.vscode/
-/emscripten/
-/ext/
-/src/
-/Jakefile.js
-/tsconfig.json
+/bin/
+/lib/
+/node_modules/
+/typings/
+/.gitignore
+/.npmignore

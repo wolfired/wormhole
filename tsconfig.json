@@ -1,18 +1,25 @@
 {
     "compilerOptions": {
-		"target": "es5",
         "module": "commonjs",
-		"declaration": true,
+        "target": "es6",
         "noImplicitAny": false,
-		"removeComments": false,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
+        "experimentalDecorators": true,
+        "pretty": true,
+        "maxNodeModuleJsDepth": 1,
+        "declaration": false,
+        "removeComments": false,
+        "sourceMap": false,
+        "inlineSourceMap": false,
+        "inlineSources": false,
+        // "sourceRoot": "http://localhost/",//PATH or URL
+        // "mapRoot": "http://localhost/",//PATH or URL
         "rootDir": "./src",
-        "outDir": "./lib"
+        "outDir": "./bin"
     },
     "exclude": [
-        "node_modules",
-        "ext",
-		"lib"
+        "bin",
+        "lib",
+        "node_modules/gots/src",
+        "node_modules/tslabs/src"
     ]
 }

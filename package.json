@@ -1,12 +1,15 @@
 {
   "name": "wormhole-framework",
-  "version": "0.0.7",
+  "version": "0.0.1",
   "description": "A Javascript Game Framework!!",
-  "bin": {},
-  "main": "./lib/wormhole.js",
-  "typings": "./lib/wormhole.d.ts",
-  "directories": {},
-  "scripts": {},
+  "scripts": {
+    "bin": "tsc -p . --outDir ./bin --sourceMap",
+    "lib": "tsc -p . --outDir ./lib --declaration --removeComments",
+    "clean": "rm -rf bin/ lib/",
+    "deps": "rm -rf node_modules/ && npm install",
+    "types": "rm -rf typings/ && typings install",
+    "install": "npm run types && npm run lib"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/outel/wormhole.git"
@@ -16,5 +19,9 @@
   "bugs": {
     "url": "https://gitlab.com/outel/wormhole/issues"
   },
-  "homepage": "https://gitlab.com/outel/wormhole#README"
+  "homepage": "https://gitlab.com/outel/wormhole#README",
+  "dependencies": {
+    "gots": "github:wolfired/gots#develop",
+    "tslabs": "github:wolfired/tslabs#develop"
+  }
 }
