@@ -27,5 +27,5 @@ export class VisualElement implements IEntity, ISignalRouter {
 		this.Get(Component4Signal).Route(s);
 	}
 
-	private _entity: IEntity = new Entity();
+	private _entity: IEntity = Entity.New();
 }

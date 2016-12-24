@@ -1,10 +1,11 @@
 import { IEntity } from './IEntity';
 
+export type ComponentType = typeof Component;
 export type ComponentConstructor<T> = new (host: IEntity) => T;
 
-export const COMPONENT_IDX: string = "COMPONENT_IDX";
-
 export class Component {
+	public static readonly IDX: uint = 0;
+
 	protected constructor(host: IEntity) {
 		this.Host = host;
 	}
@@ -12,12 +13,10 @@ export class Component {
 	public readonly Host: IEntity;
 }
 
-let IDX: uint = 0;
-
-export function Reg<T extends Component>(cc: ComponentConstructor<T>) {
-	cc[COMPONENT_IDX] = IDX++;
+export function Reg<T extends Component>(cc: ComponentConstructor<T> & ComponentType) {
+	(<{ IDX: uint }>cc).IDX = (<{ IDX: uint }>Component).IDX++;
 }
 
 export function Len(): uint {
-	return IDX;
+	return Component.IDX;
 }
