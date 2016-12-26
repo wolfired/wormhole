@@ -6,6 +6,7 @@
         "experimentalDecorators": true,
         "pretty": true,
         "maxNodeModuleJsDepth": 1,
+        "strictNullChecks": true,
         "declaration": false,
         "removeComments": false,
         "sourceMap": false,
