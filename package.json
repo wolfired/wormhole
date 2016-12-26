@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A Javascript Game Framework!!",
   "scripts": {
-    "bin": "tsc -p . --outDir ./bin --sourceMap",
+    "bin": "tsc -p . --outDir ./bin --preserveConstEnums --sourceMap",
     "lib": "tsc -p . --outDir ./lib --declaration --removeComments",
     "clean": "rm -rf bin/ lib/",
     "deps": "rm -rf node_modules/ && npm install",
