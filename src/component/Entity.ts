@@ -12,10 +12,10 @@ export class Entity implements IEntity {
     private constructor() {
     }
 
-    public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T {
+    public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T | null {
         let idx: uint = cc.IDX;
         if (void 0 === idx) {
-            return void 0;
+            return null;
         }
 
         return <T>this._component_map[idx];
