@@ -1,16 +1,28 @@
 import { ElementHandler, IList } from './IList';
 
+/**
+ * 节点
+ */
 class Node<T> {
-	public pre: Node<T>;
-	public ele: T;
-	public nxt: Node<T>;
+	public pre: Node<T> | null = null;
+	public ele: T | null = null;
+	public nxt: Node<T> | null = null;
 }
-
+/** 头节点 */
 type Head<T> = Node<T>;
+/** 尾节点 */
 type Tail<T> = Node<T>;
 
-type NodeHandler<T> = (n: Node<T>) => boolean;
+/**
+ * 节点迭代处理器
+ * @param {Node<T>} n - 节点
+ * @returns {bool} - 是否要中止迭代
+ */
+type NodeHandler<T> = (n: Node<T>) => bool;
 
+/**
+ * 双向链表
+ */
 export class LinkedList<T> implements IList<T> {
 	public constructor() {
 		this._head.pre = this._tail;
@@ -29,12 +41,12 @@ export class LinkedList<T> implements IList<T> {
 		nn.ele = e;
 
 		if (idx < this._length / 2) {
-			this.forwardNode2Tail((n: Node<T>): boolean => {
+			this.forwardNode2Tail((n: Node<T>): bool => {
 				if (0 === idx) {
 					nn.nxt = n;
 					nn.pre = n.pre;
 
-					n.pre.nxt = nn;
+					n.pre!.nxt = nn;
 					n.pre = nn;
 
 					++this._length;
@@ -48,12 +60,12 @@ export class LinkedList<T> implements IList<T> {
 			});
 		} else {
 			idx = this._length - idx;
-			this.reverseNode2Head((n: Node<T>): boolean => {
+			this.reverseNode2Head((n: Node<T>): bool => {
 				if (0 === idx) {
 					nn.nxt = n.nxt;
 					nn.pre = n;
 
-					n.nxt.pre = nn;
+					n.nxt!.pre = nn;
 					n.nxt = nn;
 
 					++this._length;
@@ -68,23 +80,23 @@ export class LinkedList<T> implements IList<T> {
 		}
 	}
 
-	public Remove(e: T, once?: boolean): void {
-		if (void 0 === once) {
-			once = true;
+	public Remove(e: T, times?: int32): void {
+		if (void 0 === times) {
+			times = 1;
 		}
 
-		this.forwardNode((n: Node<T>): boolean => {
+		this.forwardNode((n: Node<T>): bool => {
 			if (e === n.ele) {
-				n.pre.nxt = n.nxt;
-				n.nxt.pre = n.pre;
+				n.pre!.nxt = n.nxt;
+				n.nxt!.pre = n.pre;
 
-				n.pre = void 0;
-				n.ele = void 0;
-				n.nxt = void 0;
+				n.pre = null;
+				n.ele = null;
+				n.nxt = null;
 
 				--this._length;
 
-				return once;
+				return 0 === --times;
 			}
 
 			return false;
@@ -94,7 +106,7 @@ export class LinkedList<T> implements IList<T> {
 	public IndexOf(e: T): int32 {
 		let idx: int32 = -1;
 
-		this.Foreach((ele: T): boolean => {
+		this.Foreach((ele: T): bool => {
 			++idx;
 
 			if (e === ele) {
@@ -107,19 +119,19 @@ export class LinkedList<T> implements IList<T> {
 		return idx;
 	}
 
-	public ElementAt(idx?: int32): T {
+	public ElementAt(idx?: int32): T | null {
 		if (0 === this._length) {
-			return void 0;
+			return null;
 		}
 
 		if (void 0 === idx || 0 > idx || this._length <= idx) {
 			idx = this._length - 1;
 		}
 
-		let e: T;
+		let e: T | null = null;
 
 		if (idx < this._length / 2) {
-			this.Foreach((ele: T): boolean => {
+			this.Foreach((ele: T): bool => {
 				if (0 === idx) {
 					e = ele;
 
@@ -133,7 +145,7 @@ export class LinkedList<T> implements IList<T> {
 		} else {
 			idx = this._length - idx - 1;
 
-			this.Reverse((ele: T): boolean => {
+			this.Reverse((ele: T): bool => {
 				if (0 === idx) {
 					e = ele;
 
@@ -149,27 +161,30 @@ export class LinkedList<T> implements IList<T> {
 		return e;
 	}
 
-	public IsContain(e: T): boolean {
+	public IsContain(e: T): bool {
 		return -1 < this.IndexOf(e);
 	}
 
 	public Foreach(eh: ElementHandler<T>): void {
-		this.forwardNode((n: Node<T>): boolean => {
-			return eh(n.ele);
+		this.forwardNode((n: Node<T>): bool => {
+			return eh(n.ele!);
 		});
 	}
 
 	public Reverse(eh: ElementHandler<T>): void {
-		this.reverseNode((n: Node<T>): boolean => {
-			return eh(n.ele);
+		this.reverseNode((n: Node<T>): bool => {
+			return eh(n.ele!);
 		});
 	}
 
+	/**
+	 * 正向迭代节点，不包括头尾
+	 */
 	private forwardNode(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._head.nxt;
+		let n: Node<T> = this._head.nxt!;
 		let temporary: Node<T>;
 		while (n !== this._tail) {
-			temporary = n.nxt;
+			temporary = n.nxt!;
 			if (nh(n)) {
 				break;
 			}
@@ -177,11 +192,14 @@ export class LinkedList<T> implements IList<T> {
 		}
 	}
 
+	/**
+	 * 反向迭代节点，不包括头尾
+	 */
 	private reverseNode(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._tail.pre;
+		let n: Node<T> = this._tail.pre!;
 		let temporary: Node<T>;
 		while (n !== this._head) {
-			temporary = n.pre;
+			temporary = n.pre!;
 			if (nh(n)) {
 				break;
 			}
@@ -190,10 +208,10 @@ export class LinkedList<T> implements IList<T> {
 	}
 
 	private forwardNode2Tail(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._head.nxt;
+		let n: Node<T> = this._head.nxt!;
 		let temporary: Node<T>;
 		while (n !== this._head) {
-			temporary = n.nxt;
+			temporary = n.nxt!;
 			if (nh(n)) {
 				break;
 			}
@@ -202,10 +220,10 @@ export class LinkedList<T> implements IList<T> {
 	}
 
 	private reverseNode2Head(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._tail.pre;
+		let n: Node<T> = this._tail.pre!;
 		let temporary: Node<T>;
 		while (n !== this._tail) {
-			temporary = n.pre;
+			temporary = n.pre!;
 			if (nh(n)) {
 				break;
 			}
