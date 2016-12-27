@@ -4,7 +4,7 @@
   "description": "A Javascript Game Framework!!",
   "scripts": {
     "bin": "tsc -p . --outDir ./bin --preserveConstEnums --sourceMap",
-    "lib": "tsc -p . --outDir ./lib --declaration --removeComments",
+    "lib": "tsc -p . --outDir ./lib --declaration --noEmitOnError --noFallthroughCasesInSwitch --noUnusedLocals --noUnusedParameters --removeComments",
     "clean": "rm -rf bin/ lib/",
     "deps": "rm -rf node_modules/ && npm install",
     "types": "rm -rf typings/ && typings install",
