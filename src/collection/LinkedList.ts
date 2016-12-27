@@ -32,8 +32,8 @@ export class LinkedList<T> implements IList<T> {
 		this._tail.nxt = this._head;
 	}
 
-	public Insert(e: T, idx?: int32): void {
-		if (void 0 === idx || 0 > idx || this._length < idx) {
+	public Insert(e: T, idx: int32 = this._length): void {
+		if (0 > idx || this._length < idx) {
 			idx = this._length;
 		}
 
@@ -80,11 +80,7 @@ export class LinkedList<T> implements IList<T> {
 		}
 	}
 
-	public Remove(e: T, times?: int32): void {
-		if (void 0 === times) {
-			times = 1;
-		}
-
+	public Remove(e: T, times: int32 = 1): void {
 		this.forwardNode((n: Node<T>): bool => {
 			if (e === n.ele) {
 				n.pre!.nxt = n.nxt;

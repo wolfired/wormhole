@@ -1,7 +1,7 @@
-import { Component, Reg } from './Component';
+import { Component, Register } from './Component';
 import { IEntity } from './IEntity';
 
-@Reg
+@Register
 export class Component4Transform extends Component {
 	public constructor(host:IEntity) {
 		super(host);

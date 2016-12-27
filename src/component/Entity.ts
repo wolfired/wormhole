@@ -1,4 +1,4 @@
-import { Component, ComponentConstructor, ComponentType } from './Component';
+import { Component, ComponentConstructor, ComponentType, ErrNotRegister } from './Component';
 import { IEntity } from './IEntity';
 
 /**
@@ -14,17 +14,21 @@ export class Entity implements IEntity {
 
     public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T | null {
         let idx: uint = cc.IDX;
-        if (void 0 === idx) {
-            return null;
+        if (Component.IDX === idx) {
+            throw ErrNotRegister;
         }
 
-        return <T>this._component_map[idx];
+        let com = this._component_map[idx];
+        if (void 0 === com) {
+            return null;
+        }
+        return <T>com;
     }
 
     public Get<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T {
         let idx: uint = cc.IDX;
-        if (void 0 === idx) {
-            throw "Error idx";
+        if (Component.IDX === idx) {
+            throw ErrNotRegister;
         }
 
         let com = this._component_map[idx];
