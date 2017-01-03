@@ -1,14 +1,11 @@
 export class Wormhole {
-	public setup(w?: number, h?: number): Wormhole {
+	public setup(w: number = window.innerWidth, h: number = window.innerHeight): Wormhole {
 		window.onresize = (event: Event): void => {
 			this._canvas.width = window.innerWidth;
 			this._canvas.height = window.innerHeight;
 		};
 
 		document.body.style.margin = "0px";
-
-		w = void 0 == w ? window.innerWidth : w;
-		h = void 0 == h ? window.innerHeight : h;
 
 		this._canvas = <HTMLCanvasElement>document.createElement("canvas");
 		this._canvas.width = w;
