@@ -1,6 +1,6 @@
-import { Component, Register } from './Component';
-import { IEntity } from './IEntity';
 import { ISignalRouter, SignalID, SignalHandler, SignalRouter, Signal } from '../signal';
+
+import { Component, Register, IEntity } from './internal';
 
 @Register
 export class Component4Signal extends Component implements ISignalRouter {

@@ -1,4 +1,4 @@
-import { SignalID, Signal } from './Signal';
+import { SignalID, Signal } from './internal';
 
 export type SignalHandler = (s: Signal) => void;
 

@@ -1,5 +1,4 @@
-import { SignalID, Signal } from './Signal';
-import { SignalHandler, ISignalRouter } from './ISignalRouter';
+import { SignalID, Signal, SignalHandler, ISignalRouter } from './internal';
 
 type SignalHandlers = SignalHandler[];
 type SignalHandlersMap = SignalHandlers[];

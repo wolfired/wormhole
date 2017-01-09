@@ -1,5 +1,4 @@
-import { Component, Register } from './Component';
-import { IEntity } from './IEntity';
+import { Component, Register, IEntity } from './internal';
 
 @Register
 export class Component4Transform extends Component {

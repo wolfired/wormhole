@@ -1,6 +1,6 @@
-import { IEntity } from './IEntity';
-
 import { New } from 'gots/lib/errors';
+
+import { IEntity } from './internal';
 
 /** 组件尚未注册 */
 export const ErrNotRegister: error = New("component is not register");

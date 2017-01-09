@@ -1,5 +1,4 @@
-import { Component, ComponentConstructor, ComponentType, ErrNotRegister } from './Component';
-import { IEntity } from './IEntity';
+import { Component, ComponentConstructor, ComponentType, ErrNotRegister, IEntity } from './internal';
 
 /**
  * 实体类

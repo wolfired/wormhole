@@ -1,4 +1,4 @@
-import { Component, ComponentConstructor } from './Component';
+import { Component, ComponentConstructor } from './internal';
 
 export interface IEntity {
     /**

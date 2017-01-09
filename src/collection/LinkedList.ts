@@ -1,4 +1,4 @@
-import { ElementHandler, IList } from './IList';
+import { ElementHandler, IList } from './internal';
 
 /**
  * 节点
