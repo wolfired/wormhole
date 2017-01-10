@@ -5,3 +5,4 @@
 /typings/
 /.gitignore
 /.npmignore
+[a-z]*.ts

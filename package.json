@@ -4,11 +4,14 @@
   "description": "A Javascript Game Framework!!",
   "scripts": {
     "bin": "tsc -p . --outDir ./bin --preserveConstEnums --sourceMap",
+    "exp": "tsc -p . --outDir ./lib --declaration",
     "lib": "tsc -p . --outDir ./lib --declaration --noEmitOnError --noFallthroughCasesInSwitch --noUnusedLocals --noUnusedParameters --removeComments",
     "clean": "rm -rf bin/ lib/",
     "deps": "rm -rf node_modules/ && npm install",
     "types": "rm -rf typings/ && typings install",
-    "install": "npm run types && npm run lib"
+    "prebuild": "npm run types && slt_exp src",
+    "build": "npm run lib 1> /dev/null 2>&1 || npm run exp",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
