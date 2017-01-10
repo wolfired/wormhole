@@ -1,4 +1,4 @@
-import { ElementHandler, IList } from './internal';
+import { ElementHandler, IList, ErrEmptyList } from './internal';
 
 /**
  * 节点
@@ -115,9 +115,9 @@ export class LinkedList<T> implements IList<T> {
 		return idx;
 	}
 
-	public ElementAt(idx?: int32): T {
+	public ElementAt(idx: int32 = this._length - 1): T {
 		if (0 === this._length) {
-			return null!;
+			throw ErrEmptyList;
 		}
 
 		if (void 0 === idx || 0 > idx || this._length <= idx) {
@@ -159,6 +159,10 @@ export class LinkedList<T> implements IList<T> {
 
 	public IsContain(e: T): bool {
 		return -1 < this.IndexOf(e);
+	}
+
+	public IsEmpty():bool{
+		return 0 === this._length;
 	}
 
 	public Foreach(eh: ElementHandler<T>): void {

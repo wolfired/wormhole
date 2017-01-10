@@ -7,7 +7,7 @@ export class VisualElement implements component.IEntity, signal.ISignalRouter {
 		this._entity.Get(component.Component4Signal);
 	}
 
-	public TryGet<T extends component.Component>(cc: component.ComponentConstructor<T>): T {
+	public TryGet<T extends component.Component>(cc: component.ComponentConstructor<T>): T | null {
 		return this._entity.TryGet(cc);
 	}
 
@@ -27,5 +27,5 @@ export class VisualElement implements component.IEntity, signal.ISignalRouter {
 		this.Get(component.Component4Signal).Route(s);
 	}
 
-	private _entity: component.IEntity = component.Entity.New();
+	private _entity: component.IEntity = new component.Entity();
 }

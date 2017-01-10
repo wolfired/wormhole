@@ -4,14 +4,10 @@ import { Component, ComponentConstructor, ComponentType, ErrNotRegister, IEntity
  * 实体类
  */
 export class Entity implements IEntity {
-    public static New(): IEntity {
-        return new Entity();
+    public constructor() {
     }
 
-    private constructor() {
-    }
-
-    public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T {
+    public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T | null {
         let idx: uint = cc.IDX;
         if (Component.IDX === idx) {
             throw ErrNotRegister;
@@ -19,7 +15,7 @@ export class Entity implements IEntity {
 
         let com = this._component_map[idx];
         if (void 0 === com) {
-            return null!;
+            return null;
         }
         return <T>com;
     }

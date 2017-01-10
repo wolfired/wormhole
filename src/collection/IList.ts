@@ -1,3 +1,7 @@
+import * as errors from 'gots/lib/errors';
+
+export const ErrEmptyList = errors.New("empty list");
+
 /**
  * 元素迭代处理器
  * @param {T} e - 元素
@@ -38,15 +42,22 @@ export interface IList<T> {
 	/**
 	 * 获取给定索引处元素
 	 * @param {int32} idx - 索引
-	 * @returns {T | null} - 元素
+	 * @returns {T} - 元素
+	 * @throws {ErrEmptyList}
 	 */
-	ElementAt(idx: int32): T;
+	ElementAt(idx?: int32): T;
 
 	/**
 	 * 是否包含元素
 	 * @param {T} e - 元素
 	 */
 	IsContain(e: T): bool;
+
+	/**
+	 * 是否为空表
+	 * @returns {bool}
+	 */
+	IsEmpty(): bool;
 
 	/**
 	 * 正向迭代元素
