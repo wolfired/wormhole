@@ -11,7 +11,7 @@ export class Entity implements IEntity {
     private constructor() {
     }
 
-    public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T | null {
+    public TryGet<T extends Component>(cc: ComponentConstructor<T> & ComponentType): T {
         let idx: uint = cc.IDX;
         if (Component.IDX === idx) {
             throw ErrNotRegister;
@@ -19,7 +19,7 @@ export class Entity implements IEntity {
 
         let com = this._component_map[idx];
         if (void 0 === com) {
-            return null;
+            return null!;
         }
         return <T>com;
     }

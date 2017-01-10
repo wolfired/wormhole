@@ -4,9 +4,9 @@ import { ElementHandler, IList } from './internal';
  * 节点
  */
 class Node<T> {
-	public pre: Node<T> | null = null;
-	public ele: T | null = null;
-	public nxt: Node<T> | null = null;
+	public pre: Node<T> = null!;
+	public ele: T = null!;
+	public nxt: Node<T> = null!;
 }
 /** 头节点 */
 type Head<T> = Node<T>;
@@ -46,7 +46,7 @@ export class LinkedList<T> implements IList<T> {
 					nn.nxt = n;
 					nn.pre = n.pre;
 
-					n.pre!.nxt = nn;
+					n.pre.nxt = nn;
 					n.pre = nn;
 
 					++this._length;
@@ -65,7 +65,7 @@ export class LinkedList<T> implements IList<T> {
 					nn.nxt = n.nxt;
 					nn.pre = n;
 
-					n.nxt!.pre = nn;
+					n.nxt.pre = nn;
 					n.nxt = nn;
 
 					++this._length;
@@ -83,12 +83,12 @@ export class LinkedList<T> implements IList<T> {
 	public Remove(e: T, times: int32 = 1): void {
 		this.forwardNode((n: Node<T>): bool => {
 			if (e === n.ele) {
-				n.pre!.nxt = n.nxt;
-				n.nxt!.pre = n.pre;
+				n.pre.nxt = n.nxt;
+				n.nxt.pre = n.pre;
 
-				n.pre = null;
-				n.ele = null;
-				n.nxt = null;
+				n.pre = null!;
+				n.ele = null!;
+				n.nxt = null!;
 
 				--this._length;
 
@@ -115,16 +115,16 @@ export class LinkedList<T> implements IList<T> {
 		return idx;
 	}
 
-	public ElementAt(idx?: int32): T | null {
+	public ElementAt(idx?: int32): T {
 		if (0 === this._length) {
-			return null;
+			return null!;
 		}
 
 		if (void 0 === idx || 0 > idx || this._length <= idx) {
 			idx = this._length - 1;
 		}
 
-		let e: T | null = null;
+		let e: T = null!;
 
 		if (idx < this._length / 2) {
 			this.Foreach((ele: T): bool => {
@@ -163,13 +163,13 @@ export class LinkedList<T> implements IList<T> {
 
 	public Foreach(eh: ElementHandler<T>): void {
 		this.forwardNode((n: Node<T>): bool => {
-			return eh(n.ele!);
+			return eh(n.ele);
 		});
 	}
 
 	public Reverse(eh: ElementHandler<T>): void {
 		this.reverseNode((n: Node<T>): bool => {
-			return eh(n.ele!);
+			return eh(n.ele);
 		});
 	}
 
@@ -177,10 +177,10 @@ export class LinkedList<T> implements IList<T> {
 	 * 正向迭代节点，不包括头尾
 	 */
 	private forwardNode(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._head.nxt!;
+		let n: Node<T> = this._head.nxt;
 		let temporary: Node<T>;
 		while (n !== this._tail) {
-			temporary = n.nxt!;
+			temporary = n.nxt;
 			if (nh(n)) {
 				break;
 			}
@@ -192,10 +192,10 @@ export class LinkedList<T> implements IList<T> {
 	 * 反向迭代节点，不包括头尾
 	 */
 	private reverseNode(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._tail.pre!;
+		let n: Node<T> = this._tail.pre;
 		let temporary: Node<T>;
 		while (n !== this._head) {
-			temporary = n.pre!;
+			temporary = n.pre;
 			if (nh(n)) {
 				break;
 			}
@@ -204,10 +204,10 @@ export class LinkedList<T> implements IList<T> {
 	}
 
 	private forwardNode2Tail(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._head.nxt!;
+		let n: Node<T> = this._head.nxt;
 		let temporary: Node<T>;
 		while (n !== this._head) {
-			temporary = n.nxt!;
+			temporary = n.nxt;
 			if (nh(n)) {
 				break;
 			}
@@ -216,10 +216,10 @@ export class LinkedList<T> implements IList<T> {
 	}
 
 	private reverseNode2Head(nh: NodeHandler<T>): void {
-		let n: Node<T> = this._tail.pre!;
+		let n: Node<T> = this._tail.pre;
 		let temporary: Node<T>;
 		while (n !== this._tail) {
-			temporary = n.pre!;
+			temporary = n.pre;
 			if (nh(n)) {
 				break;
 			}

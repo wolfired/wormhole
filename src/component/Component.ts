@@ -1,9 +1,9 @@
-import { New } from 'gots/lib/errors';
+import * as errors from 'gots/lib/errors';
 
 import { IEntity } from './internal';
 
 /** 组件尚未注册 */
-export const ErrNotRegister: error = New("component is not register");
+export const ErrNotRegister: error = errors.New("component is not register");
 
 export type ComponentType = typeof Component;
 export type ComponentConstructor<T> = new (host: IEntity) => T;

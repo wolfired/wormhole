@@ -40,7 +40,7 @@ export interface IList<T> {
 	 * @param {int32} idx - 索引
 	 * @returns {T | null} - 元素
 	 */
-	ElementAt(idx: int32): T | null;
+	ElementAt(idx: int32): T;
 
 	/**
 	 * 是否包含元素
